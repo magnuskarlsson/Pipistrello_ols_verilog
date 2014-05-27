@@ -1,0 +1,297 @@
+##################################################################################
+## la.ucf
+##
+## Author: Michael "Mr. Sump" Poppitz
+##
+## Details: http://sump.org/projects/analyzer/
+##
+## Contains assignment and iostandard information for
+## all used pins as well as timing and area constraints.
+##
+## MODIFIED for use of Xilinx Spartan 3e Starter Kit
+## MODIFIED for use with ButterFly Platform S3E Cocoon
+## MODIFIED for use with Logic Sniffer
+## MODIFIED for use with Pipistrello LX45
+## Visit www.GadgetFactory.net or www.dangerousprototypes.com for more information
+##################################################################################
+
+CONFIG VCCAUX = "3.3" ;
+CONFIG PROHIBIT = P1,L3;
+
+# Reset switch
+NET  "reset_in" IOSTANDARD = LVCMOS33 ;
+NET  "reset_in" LOC = "N14" | PULLDOWN;
+
+# Crystal Clock - use 50MHz onboard oscillator
+NET "clock_in" IOSTANDARD = LVCMOS33;
+NET "clock_in" LOC = "H17";
+NET "clock_in" TNM_NET = "clock_in";
+TIMESPEC TS_clock_in = PERIOD "clock_in" 20 ns HIGH 50%;
+
+# external Clock - use Auxiliary clock 
+# extClockIn mapped to Wing B[6]
+NET "extClockIn" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "extClockIn" LOC = K16;
+NET "extClockIn" TNM_NET = "extClockIn";
+TIMESPEC TS_extClockIn = PERIOD "extClockIn" 10 ns HIGH 50%;
+
+# extTriggerIn mapped to Wing B[5]
+NET "extTriggerIn" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "extTriggerIn" LOC = K18;
+NET "extTriggerIn" OFFSET = IN 7 ns VALID 9 ns BEFORE "clock_in" RISING;
+
+# extClockOut mapped to Wing B[4]
+NET "extClockOut" IOSTANDARD = LVCMOS33;
+NET "extClockOut" SLEW = FAST;
+NET "extClockOut" DRIVE = 8;
+NET "extClockOut" LOC = J18;
+NET "extClockOut" TNM_NET = "extClockOut";
+
+# extTriggerOut mapped to Wing B[3]
+NET "extTriggerOut" IOSTANDARD = LVCMOS33;
+NET "extTriggerOut" SLEW = FAST;
+NET "extTriggerOut" DRIVE = 8;
+NET "extTriggerOut" LOC = H16;
+
+# indata[0-15] mapped to Wing A[0-15]
+NET "indata[0]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[0]" SLEW = FAST;
+NET "indata[0]" DRIVE = 8;
+NET "indata[0]" LOC = U18;
+NET "indata[1]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[1]" SLEW = FAST;
+NET "indata[1]" DRIVE = 8;
+NET "indata[1]" LOC = T17;
+NET "indata[2]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[2]" SLEW = FAST;
+NET "indata[2]" DRIVE = 8;
+NET "indata[2]" LOC = P17;
+NET "indata[3]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[3]" SLEW = FAST;
+NET "indata[3]" DRIVE = 8;
+NET "indata[3]" LOC = P16;
+NET "indata[4]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[4]" SLEW = FAST;
+NET "indata[4]" DRIVE = 8;
+NET "indata[4]" LOC = N16;
+NET "indata[5]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[5]" SLEW = FAST;
+NET "indata[5]" DRIVE = 8;
+NET "indata[5]" LOC = N17;
+NET "indata[6]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[6]" SLEW = FAST;
+NET "indata[6]" DRIVE = 8;
+NET "indata[6]" LOC = M16;
+NET "indata[7]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[7]" SLEW = FAST;
+NET "indata[7]" DRIVE = 8;
+NET "indata[7]" LOC = L15;
+NET "indata[8]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[8]" SLEW = FAST;
+NET "indata[8]" DRIVE = 8;
+NET "indata[8]" LOC = L17;
+NET "indata[9]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[9]" SLEW = FAST;
+NET "indata[9]" DRIVE = 8;
+NET "indata[9]" LOC = K15;
+NET "indata[10]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[10]" SLEW = FAST;
+NET "indata[10]" DRIVE = 8;
+NET "indata[10]" LOC = K17;
+NET "indata[11]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[11]" SLEW = FAST;
+NET "indata[11]" DRIVE = 8;
+NET "indata[11]" LOC = J16;
+NET "indata[12]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[12]" SLEW = FAST;
+NET "indata[12]" DRIVE = 8;
+NET "indata[12]" LOC = H15;
+NET "indata[13]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[13]" SLEW = FAST;
+NET "indata[13]" DRIVE = 8;
+NET "indata[13]" LOC = H18;
+NET "indata[14]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[14]" SLEW = FAST;
+NET "indata[14]" DRIVE = 8;
+NET "indata[14]" LOC = F18;
+NET "indata[15]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[15]" SLEW = FAST;
+NET "indata[15]" DRIVE = 8;
+NET "indata[15]" LOC = D18;
+
+# indata[16-31] mapped to Wing C[0-15]
+NET "indata[16]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[16]" SLEW = FAST;
+NET "indata[16]" DRIVE = 8;
+NET "indata[16]" LOC = F17;
+NET "indata[17]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[17]" SLEW = FAST;
+NET "indata[17]" DRIVE = 8;
+NET "indata[17]" LOC = F16;
+NET "indata[18]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[18]" SLEW = FAST;
+NET "indata[18]" DRIVE = 8;
+NET "indata[18]" LOC = E16;
+NET "indata[19]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[19]" SLEW = FAST;
+NET "indata[19]" DRIVE = 8;
+NET "indata[19]" LOC = G16;
+NET "indata[20]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[20]" SLEW = FAST;
+NET "indata[20]" DRIVE = 8;
+NET "indata[20]" LOC = F15;
+NET "indata[21]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[21]" SLEW = FAST;
+NET "indata[21]" DRIVE = 8;
+NET "indata[21]" LOC = G14;
+NET "indata[22]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[22]" SLEW = FAST;
+NET "indata[22]" DRIVE = 8;
+NET "indata[22]" LOC = F14;
+NET "indata[23]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[23]" SLEW = FAST;
+NET "indata[23]" DRIVE = 8;
+NET "indata[23]" LOC = H14;
+NET "indata[24]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[24]" SLEW = FAST;
+NET "indata[24]" DRIVE = 8;
+NET "indata[24]" LOC = H13;
+NET "indata[25]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[25]" SLEW = FAST;
+NET "indata[25]" DRIVE = 8;
+NET "indata[25]" LOC = J13;
+NET "indata[26]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[26]" SLEW = FAST;
+NET "indata[26]" DRIVE = 8;
+NET "indata[26]" LOC = G13;
+NET "indata[27]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[27]" SLEW = FAST;
+NET "indata[27]" DRIVE = 8;
+NET "indata[27]" LOC = H12;
+NET "indata[28]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[28]" SLEW = FAST;
+NET "indata[28]" DRIVE = 8;
+NET "indata[28]" LOC = K14;
+NET "indata[29]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[29]" SLEW = FAST;
+NET "indata[29]" DRIVE = 8;
+NET "indata[29]" LOC = K13;
+NET "indata[30]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[30]" SLEW = FAST;
+NET "indata[30]" DRIVE = 8;
+NET "indata[30]" LOC = K12;
+NET "indata[31]" IOSTANDARD = LVCMOS33 | PULLDOWN;
+NET "indata[31]" SLEW = FAST;
+NET "indata[31]" DRIVE = 8;
+NET "indata[31]" LOC = L12;
+
+# triggerLED mapped to LED 1 (green)
+NET "triggerLED" IOSTANDARD = LVCMOS33;
+NET "triggerLED" SLEW = SLOW;
+NET "triggerLED" DRIVE = 12;
+NET "triggerLED" LOC = V16;
+
+# armLED mapped to LED 2 (red)
+NET "armLED" IOSTANDARD = LVCMOS33;
+NET "armLED" SLEW = SLOW;
+NET "armLED" DRIVE = 12;
+NET "armLED" LOC = U16;
+
+# dataReady mapped to LED 3 (green)
+NET "dataReady" IOSTANDARD = LVCMOS33;
+NET "dataReady" SLEW = SLOW;
+NET "dataReady" DRIVE = 12;
+NET "dataReady" LOC = A16;
+
+# breathLED mapped to LED 4 (red)
+NET "breathLED" IOSTANDARD = LVCMOS33;
+NET "breathLED" SLEW = SLOW;
+NET "breathLED" DRIVE = 12;
+NET "breathLED" LOC = A15;
+
+
+#TIMESPEC TS_false = FROM "extClockIn" TO "extClockOut" TIG ;
+
+## Add jitter uncertainy to clock...
+SYSTEM_JITTER = 0.2 ns;
+
+NET "ram_interface/lpddr/memc3_wrapper_inst/mcb_ui_top_inst/mcb_raw_wrapper_inst/selfrefresh_mcb_mode" TIG;
+NET "ram_interface/lpddr/c3_pll_lock" TIG;
+#INST "dram_interface/memc3_wrapper_inst/mcb_ui_top_inst/mcb_raw_wrapper_inst/mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/DONE_SOFTANDHARD_CAL*" TIG;
+
+NET  "mcb3_dram_dq[*]"  IOSTANDARD = MOBILE_DDR ;
+NET  "mcb3_dram_a[*]"   IOSTANDARD = MOBILE_DDR ;
+NET  "mcb3_dram_ba[*]"  IOSTANDARD = MOBILE_DDR ;
+NET  "mcb3_dram_dqs"    IOSTANDARD = MOBILE_DDR ;
+NET  "mcb3_dram_udqs"   IOSTANDARD = MOBILE_DDR ;
+NET  "mcb3_dram_ck"     IOSTANDARD = DIFF_MOBILE_DDR ;
+NET  "mcb3_dram_ck_n"   IOSTANDARD = DIFF_MOBILE_DDR ;
+NET  "mcb3_dram_cke"    IOSTANDARD = MOBILE_DDR ;
+NET  "mcb3_dram_ras_n"  IOSTANDARD = MOBILE_DDR ;
+NET  "mcb3_dram_cas_n"  IOSTANDARD = MOBILE_DDR ;
+NET  "mcb3_dram_we_n"   IOSTANDARD = MOBILE_DDR ;
+NET  "mcb3_dram_dm"     IOSTANDARD = MOBILE_DDR ;
+NET  "mcb3_dram_udm"    IOSTANDARD = MOBILE_DDR ;
+NET  "mcb3_rzq"         IOSTANDARD = MOBILE_DDR ;
+
+
+NET  "mcb3_dram_a[0]"   LOC = "J7" ;
+NET  "mcb3_dram_a[10]"  LOC = "F4" ;
+NET  "mcb3_dram_a[11]"  LOC = "D3" ;
+NET  "mcb3_dram_a[12]"  LOC = "G6" ;
+NET  "mcb3_dram_a[1]"   LOC = "J6" ;
+NET  "mcb3_dram_a[2]"   LOC = "H5" ;
+NET  "mcb3_dram_a[3]"   LOC = "L7" ;
+NET  "mcb3_dram_a[4]"   LOC = "F3" ;
+NET  "mcb3_dram_a[5]"   LOC = "H4" ;
+NET  "mcb3_dram_a[6]"   LOC = "H3" ;
+NET  "mcb3_dram_a[7]"   LOC = "H6" ;
+NET  "mcb3_dram_a[8]"   LOC = "D2" ;
+NET  "mcb3_dram_a[9]"   LOC = "D1" ;
+NET  "mcb3_dram_ba[0]"  LOC = "F2" ;
+NET  "mcb3_dram_ba[1]"  LOC = "F1" ;
+NET  "mcb3_dram_cas_n"  LOC = "K5" ;
+NET  "mcb3_dram_ck"     LOC = "G3" ;
+NET  "mcb3_dram_ck_n"   LOC = "G1" ;
+NET  "mcb3_dram_cke"    LOC = "H7" ;
+NET  "mcb3_dram_dm"     LOC = "K3" ;
+NET  "mcb3_dram_dq[0]"  LOC = "L2" ;
+NET  "mcb3_dram_dq[10]" LOC = "N2" ;
+NET  "mcb3_dram_dq[11]" LOC = "N1" ;
+NET  "mcb3_dram_dq[12]" LOC = "T2" ;
+NET  "mcb3_dram_dq[13]" LOC = "T1" ;
+NET  "mcb3_dram_dq[14]" LOC = "U2" ;
+NET  "mcb3_dram_dq[15]" LOC = "U1" ;
+NET  "mcb3_dram_dq[1]"  LOC = "L1" ;
+NET  "mcb3_dram_dq[2]"  LOC = "K2" ;
+NET  "mcb3_dram_dq[3]"  LOC = "K1" ;
+NET  "mcb3_dram_dq[4]"  LOC = "H2" ;
+NET  "mcb3_dram_dq[5]"  LOC = "H1" ;
+NET  "mcb3_dram_dq[6]"  LOC = "J3" ;
+NET  "mcb3_dram_dq[7]"  LOC = "J1" ;
+NET  "mcb3_dram_dq[8]"  LOC = "M3" ;
+NET  "mcb3_dram_dq[9]"  LOC = "M1" ;
+NET  "mcb3_dram_dqs"    LOC = "L4" ;
+NET  "mcb3_dram_ras_n"  LOC = "L5" ;
+
+NET  "mcb3_dram_udm"    LOC = "K4" ;
+NET  "mcb3_dram_udqs"   LOC = "P2" ;
+NET  "mcb3_dram_we_n"   LOC = "E3" ;
+
+NET  "mcb3_rzq"         LOC = "N4" ;
+
+
+# FTDI FT2232-chB used as USB Asynchronnous FIFO
+NET "usb_rxf"        LOC = "C7"   | IOSTANDARD = LVTTL;
+NET "usb_txe"        LOC = "A6"   | IOSTANDARD = LVTTL;
+NET "usb_rd"         LOC = "B6"   | IOSTANDARD = LVTTL | SLEW = FAST | DRIVE = 8 ;
+NET "usb_wr"         LOC = "A5"   | IOSTANDARD = LVTTL | SLEW = FAST | DRIVE = 8 ;
+NET "usb_siwua"      LOC = "C5"   | IOSTANDARD = LVTTL | SLEW = FAST | DRIVE = 8 ;
+NET "usb_data<0>"    LOC = "A11"  | IOSTANDARD = LVTTL | SLEW = FAST | DRIVE = 8 ;
+NET "usb_data<1>"    LOC = "A10"  | IOSTANDARD = LVTTL | SLEW = FAST | DRIVE = 8 ;
+NET "usb_data<2>"    LOC = "C10"  | IOSTANDARD = LVTTL | SLEW = FAST | DRIVE = 8 ;
+NET "usb_data<3>"    LOC = "A9"   | IOSTANDARD = LVTTL | SLEW = FAST | DRIVE = 8 ;
+NET "usb_data<4>"    LOC = "B9"   | IOSTANDARD = LVTTL | SLEW = FAST | DRIVE = 8 ;
+NET "usb_data<5>"    LOC = "A8"   | IOSTANDARD = LVTTL | SLEW = FAST | DRIVE = 8 ;
+NET "usb_data<6>"    LOC = "B8"   | IOSTANDARD = LVTTL | SLEW = FAST | DRIVE = 8 ;
+NET "usb_data<7>"    LOC = "A7"   | IOSTANDARD = LVTTL | SLEW = FAST | DRIVE = 8 ;
